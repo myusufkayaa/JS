@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="https://maeyler.github.io/favicon.ico">
+    <title>Celsius <-> Fahrenheit Converter </title>
+
+  <style> /* CSS comment */
+    body { max-width: 440px; }
+    #inp { width: 50px }
+    #out {
+        font-size: 18px;
+        background: blue;
+        color: white;
+        text-align: center;
+        padding: 10px;
+    }
+  </style>
+</head>
+
+<body>   <!-- HTML comment: Modify all items marked xxx -->
+
+<h2 id=title>This text is not shown. Why?</h2>
+C
+<input type=number id=celsius value=0 onChange="c2f()">
+&emsp;
+F
+<input type=number id=fahrenheit value=0 onChange="f2c()">
+
+
+<script>
+"use strict";
+// JavaScript comment
+function c2f(){
+    let c=Number(celsius.value);
+    fahrenheit.value=1.8*c+32;
+}
+function f2c(){
+    let f=Number(fahrenheit.value);
+    celsius.value=(f-32)/1.8;
+}
+function increment() {
+    let c = Number(out.innerText)+1
+    console.log("counter = "+c);
+    out.innerText = c;
+}
+    //global variable id is the HTML element with id 
+    //const title = document.getElementById("title");
+    title.innerText = document.title;
+    sample.innerText = increment.toString();
+    out.innerText = 0; increment();
+</script>
+
+</body>
+</html>
