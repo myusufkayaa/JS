@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="https://maeyler.github.io/305/images/icon192.png">
+    <title>Student Database </title>
+
+  <style>
+    .link {
+        color: blue;
+        cursor: pointer;
+        font-style: italic;
+    }
+    .course {
+        visibility: hidden;
+        font: 10px arial, sans-serif;
+        color: white;
+        background: blue;
+        cursor: text;
+        padding: 6px;
+        position: absolute;
+        height: 90px;
+        overflow-y: auto;
+    }
+    .link:hover .course { 
+        visibility: visible; 
+    }
+  </style>
+</head>
+
+<body>
+
+<h2 id="title">Courses</h2>
+
+<p>Course code: 
+<input type="text" onchange="CoursesIn(value)" value="math 206">
+</p>
+<p id="out" onclick="doClick(event)"><br></p>
+
+<hr>
+<b>Sample code</b>
+<pre id="sample">function readData(file) {<br>    console.log("readData "+file);<br>    fetch(url+file)<br>        .then(r =&gt; r.text(), report)<br>        .then(addStudents, report);<br>}<br>function addStudents(txt) {<br>    let msg = txt.length+" chars, ";<br>    let a = txt.split("\n");<br>    msg += a.length+" lines, ";<br>    for (let s of a) {<br>      let std = parseStudent(s);<br>      keys.push(std.id); vals.push(std);<br>    }<br>    report(msg + keys.length+" students");<br>}</pre>
+<hr>
+
+<script>
+"use strict";
+class Course{
+    constructor(id,hour,date, ...list){
+        this.id=id;
+        this.hour=hour;
+        this.date=date;
+        this.list=list;
+    }
+}
+function report(msg, id, list) {
+    out.innerHTML += "<br>"; msg += " ";
+    out.appendChild(document.createTextNode(msg));
+    let n1;
+    if (id) {
+        n1 = document.createElement("span");
+        n1.appendChild(document.createTextNode(id));
+        n1  .classList.add("link");
+        out.appendChild(n1); msg += id;
+    }
+    if (list) {
+        let n2 = document.createElement("span");
+        n2.appendChild(document.createTextNode(""));
+        n2.innerHTML += list.join("<br>");
+        n2.classList.add("course");
+        console.log(n2);
+        if (n1) n1.appendChild(n2);
+    }
+}
+const url = "https://maeyler.github.io/JS/data/";
+function readData(file) {
+    console.log(url+file);
+    fetch(url+file)
+        .then(r => r.text(), report)
+        .then(addCourses, report);
+}
+function parseCourse(line) {
+    let [id, hour, date, ...list] = line.split("\t");
+    let course=new Course(id, hour, date, list);
+    return course;
+}
+function addCourses(txt) {
+    let msg = txt.length+" chars, ";
+    let a = txt.split("\n");
+    
+    for (let s of a) {
+      let course =parseCourse(s);
+      keys.push(course.id); vals.push(course);
+    }
+}
+function doClick(evt) {
+    let t = evt.target;
+    let s = t.innerText;
+    if (/^\d+$/.test(s)) showStd(s); 
+    else if (t = t.firstElementChild) {
+        t.style.visibility = "";
+        let hide = function () {
+            t.style.visibility = "hidden";
+        };
+        setTimeout(hide, 5000);
+    }
+}
+
+function CoursesIn(code) {
+    out.innerHTML="";
+    code = code.toUpperCase();
+    let a ;
+    for (let course of vals) 
+        if (course.id==code) 
+            a=course;
+    if (a != null){
+        report(a.date +"\n");
+        report( a.hour +"\n");
+        report(a.list);
+    }else report("No course in "+code);
+}
+    title.innerText = document.title;
+    sample.innerText = readData+"\n"+addCourses;
+    const keys = [], vals = [];
+    readData("Courses.txt")
+</script>
+
+
+
+</body></html>
