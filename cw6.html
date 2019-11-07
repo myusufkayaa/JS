@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width">
+    <title>CW6</title>
+<style>
+  .thumb {
+     width: 400px;
+     border: 1px solid #000;
+     margin: 10px 5px 0 0;
+  }
+</style></head>
+
+
+
+
+
+<body>
+<h2 id="title">Read file</h2>
+
+<input type="file" id="button" onChange="fileSelect(this)" multiple="multiple">
+</p>
+<input type=text id=url>
+
+<input type=button value="remote" onClick="fetchURL()">
+</p>
+<input type=button value="karşılaştır" onClick="compareText()">
+<output id="out"></output>
+</p>
+
+
+
+
+<script>
+"use strict";
+
+    let array = [];
+    let rmt;
+function fileSelect(t) { 
+    array = []
+    var files = t.files;
+    for(let f of files){
+        let reader = new FileReader();    
+    reader.onload = function(evt) {
+         array.push([reader.result,f.name])
+      };
+        reader.readAsText(f);   
+    }
+}
+function compareText(){
+    
+    let str = "Aynı Dosya Yok";
+    
+    for(let a of array){
+        if(a[0] == rmt){
+            str =  a[1] + "  Aynı ";
+        }
+    }
+    out.innerText = array.length + str; 
+
+}
+
+function fetchURL(){
+ fetch(url.value)
+      .then(r =>  r.text()).then(result => rmt = result) 
+
+}
+    title.innerText = document.title;
+    sample.innerText = fileSelect.toString();
+</script>
+</body>
+</html>
