@@ -1,103 +1,78 @@
 <!DOCTYPE html>
-<html lang="en-US">
 
-<head>
-    <meta charset="UTF-8">
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <meta name="viewport" content="width=device-width">
-    <link href="https://maeyler.github.io/JS/sss/inspector.css" rel="stylesheet" media="all">
-    <link rel="icon" href="../images/icon192.png">
-    <script src="https://maeyler.github.io/JS/sss/inspector.js"></script>
-    <script src="c4_data.js"></script>
-    <script src="c6_object.js"></script>
-    <script src="Async.js"></script>
-    <title>Eloquent JavaScript </title>
-</head>
+    <title>CW6</title>
+<style>
+  .thumb {
+     width: 400px;
+     border: 1px solid #000;
+     margin: 10px 5px 0 0;
+  }
+</style></head>
+
+
+
+
 
 <body>
-    <p><b id=docName></b> &nbsp;
-        <a href="https://maeyler.github.io/JS/sss/">Read me</a> &nbsp;
-        <a href="https://maeyler.github.io/JS/sss/Turkish">Turkish</a>
-    </p>
-    <div id=sss></div>
-    <pre id=disp1></pre>
-    <img id=disp2 />
-    WORKS: </br>
+<h2 id="title">Read file</h2>
+
+<input type="file" id="button" onChange="fileSelect(this)" multiple="multiple">
+</p>
+<input type=text id=url>
+
+<input type=button value="remote" onClick="fetchURL()">
+</p>
+<input type=button value="karşılaştır" onClick="compareText()">
+<output id="out"></output>
+</p>
+WORKS: 
+</br>
     <a href="https://myusufkayaa.github.io/JS/CW1.png">CW1</a> </br>
     <a href="https://myusufkayaa.github.io/JS/CountDown.html">(CW2)Counting Example</a> </br>
     <a href="https://myusufkayaa.github.io/JS/C2FConverter.html">(CW2)Celsius to Fahrenheit Example</a> </br>
     <a href="https://myusufkayaa.github.io/JS/CW3.png">CW3</a> </br>
     <a href="https://myusufkayaa.github.io/JS/CW%234.html">CW4</a> </br>
-    <script>
-        class CW5 extends Menu {
-            constructor(course, student,point, point3d) {
-                super();
-                this.course=new Course("JS","13:00", "Persembe","B-131");
-                this.student=new Student(1621221021,"Muhammed Yusuf Kaya", 2.50,this.course);
-                this.point=new Point(1,2);
-                this.point3d=new Point3D(1,2,3);
-            }
-        }
-        class Course{
-            constructor(name, time, date, rooms){
-                this.name=name;
-                this.time=time;
-                this.date=date;
-                this.rooms=rooms;
-            }
-            toString(){
-                return this.name;
-            }
-        }
-        class Student{
-            constructor(id, name, gpa, courses){
-                this.id=id;
-                this.name=name;
-                this.gpa=gpa;
-                this.courses=courses;
-            }
-            toString(){
-                return this.name;
-            }
-        }
-        class Point{
-            constructor(x,y){
-                this.x=x;
-                this.y=y;
-            }
-            toString(){
-                return "x: "+this.x+" y: "+this.y;
-            }
-        }
-        class Point3D extends Point{
-            constructor(x,y,z){
-                super(x,y);
-                this.z=z;
-            }
-            toString(){
-                return "x: "+this.x+" y: "+this.y+" z: "+this.z;
-            }
-        }
-        "use strict";
-        var a, b, c, code;  //global variables
-        function init() {
-            let len = 123, name = "Circle", pi = Math.PI;
-            a = [0, 11, "22", "abc"];
-            c = { len, name, pi };
-            display(new Chap4());
-            display(new Chap6());
-            display(new Async());
-            MENU = new CW5(); //global
-            display(MENU);
-        }
-        docName.innerText = "Inspector " + VERSION;
-        try {
-            inspect(sss, init); //makes the table
-            inp.value = "new Date()";
-        } catch (e) {
-            reportError(e);
-        }
-        
-    </script>
-</body>
+    <a href="https://myusufkayaa.github.io/JS/CH5/EloquentJS.html">CW5</a> </br>
+<script>
+"use strict";
 
+    let array = [];
+    let rmt;
+function fileSelect(t) { 
+    array = []
+    var files = t.files;
+    for(let f of files){
+        let reader = new FileReader();    
+    reader.onload = function(evt) {
+         array.push([reader.result,f.name])
+      };
+        reader.readAsText(f);   
+    }
+}
+function compareText(){
+    
+    let str = "Aynı Dosya Yok";
+    
+    for(let a of array){
+        if(a[0] == rmt){
+            str =  a[1] + "  Aynı ";
+        }
+    }
+    out.innerText = array.length + str; 
+
+}
+
+function fetchURL(){
+ fetch(url.value)
+      .then(r =>  r.text()).then(result => rmt = result) 
+
+}
+    title.innerText = document.title;
+    sample.innerText = fileSelect.toString();
+</script>
+</body>
 </html>
