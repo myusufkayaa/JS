@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="../images/icon192.png">
+    <script src="Database.js"></script>
+    <title>Array vs Map</title>
+
+  <style>
+    body { max-width: 450px; }
+    #clock {
+        font-size: 48px;
+        background-color: blue;
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h3>Array vs Map</h3>
+<button onClick='arrayTiming()'>Array</button>
+<button onClick='mapTiming()'>Map</button>
+<p id=out>Class Work 7</p>
+
+<hr />
+<h3>Sample code</h3>
+<pre id=sample></pre>
+<hr />
+
+<script>
+"use strict";
+const url = "https://maeyler.github.io/JS/data/"
+const array = []
+const map = new Map();
+const randomArray = [];
+createRandom();
+function readData(file) {
+    console.log("readData "+file)
+    fetch(url+file)
+        .then(r => r.text())
+        .then(addStudents)
+        .catch(console.error)
+}
+function parseStudent(line) {
+    let b = line.split("\t");
+    let id = b[0], name = b[1], gpa = b[2];
+    let std = new Student(id, name, gpa);
+    let list = [];
+    for (let i=3; i<b.length; i++) 
+        list.push(b[i]);
+    std.courses = list
+    return std
+}
+function addStudents(txt) {
+    let msg = "\nData contains ";
+    msg += txt.length+" chars, ";
+    let a = txt.split("\n");
+    msg += a.length+" lines \n";
+    for (let s of a) {
+      let std = parseStudent(s);
+      array.push(std.id);map.set(std.id, std);
+    }
+    msg += array.length+" students, "
+    msg += map.length+" distinct names"
+    out.innerText += msg
+}
+function createRandom(){
+    for (let i = 0; i<10000; i++) {
+        randomArray.push(Math.floor(Math.random()*1000000000) + '')
+    }
+    randomArray.push('116691373');
+}
+function arrInc(a, b) { 
+    let counter = 0;
+    for (let x of a){
+      if (b.includes(x)) 
+        counter++;
+    }
+    return counter;
+}
+function mapHas(a, b) { 
+    let counter = 0
+    for (let x of a){
+      if (b.has(x)) 
+        counter++;
+    }
+    return counter;
+}
+function arrayTiming() {
+    let t = performance.now();
+    let x = arrInc(randomArray, array); 
+    t = performance.now() - t;
+    let s = "Array Include: "+t.toPrecision(3)+" msec "+x;
+    out.innerText += "\n"+s; console.log(s)
+}
+function mapTiming() {
+    let t = performance.now()
+    let x = mapHas(randomArray, map) 
+    t = performance.now() - t
+    let s ="Map Has: "+t.toPrecision(3)+" msec "+x
+    out.innerText += "\n"+s; console.log(s)
+}
+sample.innerText = arrayTiming+'\n'+mapTiming
+readData("Students.txt");
+</script>
+
+</body>
+</html>
