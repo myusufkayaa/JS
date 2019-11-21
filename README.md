@@ -20,3 +20,5 @@ Advance Programming Repository [GitHub Page](https://github.com/myusufkayaa/JS)
    [(CW5)](https://myusufkayaa.github.io/JS/CH5/EloquentJS.html)
    
    [(CW6)](https://myusufkayaa.github.io/JS/cw6.html)
+   
+   [(CW7)](https://myusufkayaa.github.io/JS/CW7/Timing.html)
