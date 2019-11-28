@@ -15,7 +15,7 @@ class ReadJSON {
         .then(res => res.json()) 
         .then(res => {
             this.data = res
-            document.getElementById('info').innerHTML = 'manifest.json is read'
+            document.getElementById('info').innerHTML = 'example.json is read'
             this.fillTable()
         })
         
