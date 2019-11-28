@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="database.js"></script>
+    <title>CW 8</title>
+</head>
+<style>
+    table {
+        width:400px;
+    }
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+    table.t01 tbody:nth-child(even) {
+        background-color: #eee;
+    }
+    table.t01 tbody:nth-child(odd) {
+        background-color: #fff;
+    }
+    table.t01 tbody tr th {
+        background-color: #d2d2d2;
+    }
+    table.t01 tbody:first-child tr th{
+        background-color: #4b4b4b!important;
+        color: #ffffff!important;
+    }
+</style>
+<body>
+    <h2 id="title">Fill the Table</h2>
+    <p id="info"></p>
+    <hr />
+    <h5 id="subTitle"></h5>
+    <p>
+        <table id="datas" class="t01">
+        </table>
+    </p>
+    <hr />
+
+    <b>Sample code</b>
+    <pre id=sample></pre>
+    <hr />
+    <script>
+        var c = new ReadJSON('https://raw.githubusercontent.com/myusufkayaa/JS/master/example.json')
+        c.readData()
+        sample.innerText = c.fillTable
+    </script>
+</body>
+</html>
+
