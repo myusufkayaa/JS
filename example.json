@@ -1,0 +1,58 @@
+[
+  {
+    "Name": "Mercury",
+    "Diam": 0.382,
+    "Mass": 0.06,
+    "Radius": 0.4,
+    "Period": 0.24
+  },
+  {
+    "Name": "Venus",
+    "Diam": 0.949,
+    "Mass": 0.82,
+    "Radius": 0.72,
+    "Period": 0.62
+  },
+  {
+    "Name": "Earth",
+    "Diam": 1,
+    "Mass": 1,
+    "Radius": 1,
+    "Period": 1
+  },
+  {
+    "Name": "Mars",
+    "Diam": 0.532,
+    "Mass": 0.11,
+    "Radius": 1.52,
+    "Period": 1.88
+  },
+  {
+    "Name": "Jupiter",
+    "Diam": 11.209,
+    "Mass": 317.8,
+    "Radius": 5.2,
+    "Period": 11.86
+  },
+  {
+    "Name": "Saturn",
+    "Diam": 9.449,
+    "Mass": 95.2,
+    "Radius": 9.54,
+    "Period": 29.46
+  },
+  {
+    "Name": "Uranus",
+    "Diam": 4.007,
+    "Mass": 14.6,
+    "Radius": 19.22,
+    "Period": 84.01
+  },
+  {
+    "Name": "Neptune",
+    "Diam": 3.883,
+    "Mass": 17.2,
+    "Radius": 30.06,
+    "Period": 164.8
+  }
+]
