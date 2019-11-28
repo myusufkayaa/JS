@@ -1,0 +1,26 @@
+{
+    "name": "M. Yusuf KAYA",
+    "description": "Advanced Programming Classwork",
+    "short_name": "JS",
+    "start_url": "/JS/index.html",
+    "display": "standalone",
+    "background_color": "white",
+    "theme_color": "#457cdb",
+    "icons": [
+        {
+            "src": "JavaScript-logo.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "JavaScript-logo.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "JavaScript-logo.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
