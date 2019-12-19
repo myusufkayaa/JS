@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="../images/icon192.png">
+    <title>Student Database </title>  
+    <script src="database.js"></script>
+  <style>
+    .link {
+        color: blue;
+        cursor: pointer;
+        font-style: italic;
+    }
+    .course {
+        visibility: hidden;
+        font: 10px arial, sans-serif;
+        color: white;
+        background: blue;
+        cursor: text;
+        padding: 6px;
+        position: absolute;
+        height: 90px;
+        overflow-y: auto;
+    }
+    .link:hover .course { 
+        visibility: visible; 
+    }
+  </style>
+</head>
+<body>
+<h2 id=title></h2>
+<button onClick='db.randomStudent()'>Random Student</button>
+<button onClick='out.innerText=""'>Clear</button>
+<button onClick='db.getAverageGPA()'>Average GPA</button>
+<hr />
+<p>Student id: 
+<input type=number id="stdId">
+</p><button onClick='db.getStudentCourses(stdId.value)'>Get Student's Courses</button>
+<button onClick='db.getSchedule(stdId.value)'>Get Student's Exam Schedule</button>
+<hr />
+<p>GPA: 
+<input type=number id="gpa">
+</p><button onClick='db.stuGPA(gpa.value)'>Number Of Students Above A Given GPA</button>
+<hr />
+<p>Course code: 
+<input type=text id="course">
+</p><button onClick='db.getStudentsOfCourse(course.value)'> Get Students</button>
+<button onClick='db.getAverageOfCourse(course.value)'> Get Average Gpa of Course</button>
+<hr />
+<p>Room: 
+<input type=text id="room">
+</p><button onClick='db.getCoursesOfRoom(room.value)'>Get Courses</button>
+<button onClick='db.getCourseCountOfRoom(room.value)'>Get Courses Count</button>
+<hr />
+<p id=out>Result:</p>
+
+<script>
+    title.innerText = document.title;
+    db = new Database();
+
+</script>
+
+</body>
+</html>
+
