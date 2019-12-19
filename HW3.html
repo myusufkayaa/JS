@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>CSS Animation</title>
+
+  <style>
+    body { max-width: 500px; }
+    #sample { overflow-x: auto; }
+    button {
+      user-select: none;
+      cursor: pointer;
+    }
+    div {
+      font-size: 90px;
+      background: #cfc;
+      width: 450px;
+      height: 250px;
+      position: relative;
+    }
+    #y, #u, #s, #uu, #f {
+      user-select: none;
+      position: absolute;
+      left: 130px;
+      background: rgba(0, 0, 0, 0);
+      color: #da0;
+      top: -10px;
+    }
+   
+    #out {
+      height: 35px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2 id=title></h2>
+
+<div id=box>
+  <span id=y>y</span>
+  <span id=u>u</span>
+  <span id=s>s</span>
+  <span id=uu>u</span>
+  <span id=f>f</span>
+  
+</div>
+
+<p>
+<button onClick="y .animate(ty, 5000),u .animate(tu, 5000),s .animate(ts, 5000),uu .animate(tuu, 5000),f .animate(tf, 5000)">rotate</button>
+</p>
+
+<p id=out>Animations in CSS are powerful</p>
+
+<hr />
+<b>Sample code</b>
+<pre id=sample></pre>
+
+<hr />
+<p>Ref: <a href="https://webkit.org/blog/8343/web-animations-in-webkit/" 
+   target="NewTab">Web Animations in WebKit</a>
+</p>
+
+<script>
+"use strict";
+const
+  r0 = "rotate(0)", x0 = "translateX(0)",
+  ty = { transform: [r0, "translateX(-80px)", "translate(-80px,80px)","rotate(360deg)", r0] },
+  tu = { transform: [r0, "translateX(0px)", "translate(0px,80px)","rotate(360deg)", r0] },
+  ts = { transform: [r0, "translateX(80px)", "translate(80px,80px)","rotate(360deg)", r0] },
+  tuu = { transform: [r0, "translateX(160px)", "translate(160px,80px)","rotate(360deg)", r0] },
+  tf = { transform: [r0, "translateX(240px)", "translate(240px,80px)","rotate(360deg)", r0] };
+
+    title.innerText = document.title;
+    sample.innerText 
+      = 'ty = { transform: [r0, "translateX(-80px)", "translate(-80px,80px)","rotate(360deg)", r0] }';
+</script>
+
+</body>
+</html>
